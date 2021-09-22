@@ -19,12 +19,9 @@ defmodule LucasNumbers do
   end
 
   def generate(count) do
-    sequence =
-      {2, 1}
-      |> Stream.iterate(fn {a, b} -> {b, a + b} end)
-      |> Stream.map(&elem(&1, 1))
-      |> Enum.take(count - 1)
-
-    [2 | sequence]
+      Stream.iterate({2, 1}, fn {x, y} -> {y, x + y} end)
+      |> Stream.map(&elem(&1, 0))
+      |> Enum.take(count)
   end
+  
 end
